@@ -6,7 +6,7 @@ In-memory storage implementation for Webauthz NodeJS application SDK.
 # Usage
 
 ```
-const { WebauthzMemoryDatabase } = require('@webauthz/sdk-app-database-memory-js');
+const { WebauthzMemoryDatabase } = require('@webauthz/sdk-app-data-memory-js');
 const { Webauthz } = require('@webauthz/sdk-app-core-node-js');
 
 const database = new WebauthzMemoryDatabase();
