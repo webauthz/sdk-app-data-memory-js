@@ -1,6 +1,6 @@
 {
   "name": "@webauthz/sdk-app-data-memory-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "In-memory storage for Webauthz NodeJS application SDK",
   "main": "dist/main.umd.js",
   "module": "src/main",
