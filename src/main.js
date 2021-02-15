@@ -51,12 +51,12 @@ class WebauthzMemoryDatabase {
     async createAccessToken(id, accessTokenRecord) {
         const isCreated = await this.database.collection('webauthz_access_token').insert(id, accessTokenRecord);
 
-        // NOTE: because we're using an in-memory database without a search feature, we create our own index of origin + path pointing to the access token record, so we can look up access tokens later by origin and path prefix; in a relational database this would simply be a lookup on columns other than the primary key, which could then be indexed by the database; we include user_id as prefix in the index to ensure that all tokens are still scoped to the user in the index and we don't accidentally find a token belonging to someone else for the same resource
+        // NOTE: because we're using an in-memory database without a search feature, we create our own index of origin + path pointing to the access token record, so we can look up access tokens later by origin and path prefix; in a relational database this would simply be a lookup on columns other than the primary key, which could then be indexed by the database; we include user_id as prefix in the index to ensure that all tokens are still scoped to the user in the index and we don't accidentally find a token belonging to someone else for the same resource; "replace" below means insert or update -- if you do keep a separate index table and the storage system doesn't support "replace", use fetch, delete if exists, then insert
 
         const { user_id, origin, path } = accessTokenRecord;
         const indexValue = `${user_id}:${origin}${path}`;
         this.log.info(`createAccessToken: adding access token index for ${indexValue} => ${id}`);
-        await this.database.collection('webauthz_access_token_index').insert(indexValue, id);
+        await this.database.collection('webauthz_access_token_index').replace(indexValue, id);
 
         return isCreated;
     }
