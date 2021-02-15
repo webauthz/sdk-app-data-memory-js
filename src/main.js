@@ -37,6 +37,11 @@ class WebauthzMemoryDatabase {
         return isCreated;
     }
 
+    async deleteAccessRequest(requestId) {
+        const isDeleted = await this.database.collection('webauthz_request').deleteById(requestId);
+        return isDeleted;
+    }
+
     async fetchAccessRequest(requestId) {
         return await this.database.collection('webauthz_request').fetchById(requestId);
     }
