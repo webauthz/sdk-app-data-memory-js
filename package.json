@@ -1,6 +1,6 @@
 {
   "name": "@webauthz/sdk-app-data-memory-js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "In-memory storage for Webauthz NodeJS application SDK",
   "main": "dist/main.umd.js",
   "module": "src/main",
@@ -49,6 +49,6 @@
     "rollup": "^2.36.2"
   },
   "dependencies": {
-    "@libertyio/data-collection-memory-js": "^0.2.0"
+    "@libertyio/data-collection-memory-js": "^0.3.0"
   }
 }
